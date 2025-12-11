@@ -17,7 +17,7 @@ public class ConsumerService {
     @RabbitListener(queues = MessageConfig.QUEUE)
     public String consumeMessageFromQueue(MessageDto orderStatus) {
         System.out.println("Message recieved from queue : " + orderStatus);
-        Users user = new Users();
+     /*   Users user = new Users();
         if(orderStatus.getUser().getId() != null) {
             user.setId(orderStatus.getUser().getId());
             user.setUserName(orderStatus.getUser().getUserName());
@@ -26,8 +26,8 @@ public class ConsumerService {
             user.setEmail(orderStatus.getUser().getEmail());
             user.setRole(orderStatus.getUser().getRole());
             usersRepo.saveAndFlush(user);
-        }
-        return "User saved successfully with ID: " + user.getId();
+        }*/
+        return "User saved successfully with ID: " + orderStatus.getUser();
 
     }
 }
