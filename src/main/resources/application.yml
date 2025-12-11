@@ -2,27 +2,9 @@ spring:
   application:
     name: renderConsumer
 
-  datasource:
-    url: jdbc:postgresql://dpg-d4rp0dili9vc73ddsnp0-a.singapore-postgres.render.com:5432/shenba
-    username: shenba
-    password: w0iJEirXg31yhmfzajrJxrXTwW9H9isr
-    hikari:
-      maximum-pool-size: 2
-      auto-commit: false
-      data-source-properties:
-        ssl: true
-        sslmode: require
+  rabbitmq:
+    uri: ${SPRING_RABBITMQ_URI}
+    addresses: amqps://gicdzucg:LkSM27kzjstopmsskbf8WL_N9HkIcovd@kingfisher.lmq.cloudamqp.com/gicdzucg
 
-        jpa:
-          hibernate:
-            ddl-auto: update
-
-        main:
-          allow-circular-references: true
-
-          rabbitmq:
-            uri: ${SPRING_RABBITMQ_URI}
-            # fallback if needed
-            addresses: amqps://gicdzucg:LkSM27kzjstopmsskbf8WL_N9HkIcovd@kingfisher.lmq.cloudamqp.com/gicdzucg
-            server:
-              port: 9090
+server:
+  port: 9090
