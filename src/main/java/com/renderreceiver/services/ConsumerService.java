@@ -4,6 +4,7 @@ import com.renderreceiver.config.MessageConfig;
 import com.renderreceiver.dto.MessageDto;
 import com.renderreceiver.dto.Users;
 import com.renderreceiver.repo.UsersRepo;
+import com.renderreceiver.util.PasswordUtil;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ public class ConsumerService {
             user.setId(orderStatus.getUser().getId());
             user.setUserName(orderStatus.getUser().getUserName());
             user.setName(orderStatus.getUser().getName());
+            user.setPassword(PasswordUtil.getEncryptedPassword(orderStatus.getUser().getPassword()));
             user.setEmail(orderStatus.getUser().getEmail());
             user.setRole(orderStatus.getUser().getRole());
             usersRepo.saveAndFlush(user);
